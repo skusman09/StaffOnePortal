@@ -1,0 +1,159 @@
+---
+interface Props {
+  plans: {
+    name: string;
+    price: { monthly: number; annual: number };
+    description: string;
+    features: string[];
+    cta: string;
+    highlight?: boolean;
+    badge?: string;
+  }[];
+}
+
+const { plans } = Astro.props;
+---
+
+<div class="pricing-cards">
+  {plans.map((plan) => (
+    <div class:list={['pricing-card', 'card', 'card-hover', { 'pricing-highlight': plan.highlight }]}>
+      {plan.badge && <span class="pricing-badge">{plan.badge}</span>}
+      <h3 class="pricing-name">{plan.name}</h3>
+      <p class="pricing-desc">{plan.description}</p>
+      <div class="pricing-price">
+        {plan.price.monthly > 0 ? (
+          <>
+            <span class="pricing-currency">$</span>
+            <span class="pricing-amount" data-monthly={plan.price.monthly} data-annual={plan.price.annual}>{plan.price.monthly}</span>
+            <span class="pricing-period">/ user / month</span>
+          </>
+        ) : (
+          <span class="pricing-amount pricing-custom">Custom</span>
+        )}
+      </div>
+      <a href="/contact" class:list={['btn', 'btn-lg', 'pricing-cta', plan.highlight ? 'btn-primary' : 'btn-secondary']}>
+        {plan.cta}
+      </a>
+      <ul class="pricing-features">
+        {plan.features.map(f => (
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            {f}
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</div>
+
+<style>
+  .pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .pricing-card {
+    position: relative;
+    padding: var(--space-8);
+    text-align: center;
+  }
+
+  .pricing-highlight {
+    border-color: var(--brand-start);
+    box-shadow: var(--shadow-brand);
+    transform: scale(1.02);
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--brand-gradient);
+    color: white;
+    padding: var(--space-1) var(--space-4);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .pricing-name {
+    font-size: var(--text-xl);
+    font-weight: 800;
+    margin-bottom: var(--space-2);
+  }
+
+  .pricing-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-6);
+  }
+
+  .pricing-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 2px;
+    margin-bottom: var(--space-6);
+  }
+
+  .pricing-currency {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+
+  .pricing-amount {
+    font-size: var(--text-5xl);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .pricing-custom {
+    font-size: var(--text-4xl);
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .pricing-period {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    margin-left: var(--space-1);
+  }
+
+  .pricing-cta {
+    width: 100%;
+    margin-bottom: var(--space-8);
+  }
+
+  .pricing-features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    text-align: left;
+  }
+
+  .pricing-features li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
+
+  .pricing-features svg {
+    flex-shrink: 0;
+    color: var(--success);
+  }
+
+  @media (max-width: 1024px) {
+    .pricing-cards { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+    .pricing-highlight { transform: none; }
+  }
+</style>

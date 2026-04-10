@@ -1,0 +1,97 @@
+---
+interface Props {
+  testimonials: {
+    quote: string;
+    name: string;
+    role: string;
+    company: string;
+    initials: string;
+    color: string;
+  }[];
+}
+
+const { testimonials } = Astro.props;
+---
+
+<div class="testimonials-grid">
+  {testimonials.map((t) => (
+    <div class="testimonial-card card">
+      <div class="testimonial-stars">
+        {[1,2,3,4,5].map(() => (
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        ))}
+      </div>
+      <blockquote class="testimonial-quote">"{t.quote}"</blockquote>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar" style={`background:${t.color};`}>{t.initials}</div>
+        <div>
+          <div class="testimonial-name">{t.name}</div>
+          <div class="testimonial-role">{t.role}, {t.company}</div>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .testimonial-card {
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .testimonial-stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .testimonial-quote {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .testimonial-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: var(--text-sm);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .testimonial-name {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .testimonial-role {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+  }
+
+  @media (max-width: 1024px) {
+    .testimonials-grid { grid-template-columns: 1fr; max-width: 600px; margin: 0 auto; }
+  }
+</style>

@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import CTABanner from '../components/CTABanner.astro';
+---
+
+<BaseLayout title="Contact" description="Request a personalized StaffOne demo. See how workforce management, attendance tracking, and payroll readiness work for your team.">
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-content reveal">
+        <span class="badge badge-brand">Get in Touch</span>
+        <h1>Let's talk about your team's operations</h1>
+        <p>Whether you're managing 10 or 10,000 employees, we'll show you how StaffOne fits your workflow.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Info Strip — using global grid-4 utility -->
+  <section class="contact-strip-section">
+    <div class="container">
+      <div class="grid-4 reveal">
+        <div class="strip-item card card-hover">
+          <div class="strip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="strip-text">
+            <span class="strip-label">Email Us</span>
+            <span class="strip-value">hello@staffone.io</span>
+          </div>
+        </div>
+        <div class="strip-item card card-hover">
+          <div class="strip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="strip-text">
+            <span class="strip-label">Response Time</span>
+            <span class="strip-value">Under 24 hours</span>
+          </div>
+        </div>
+        <div class="strip-item card card-hover">
+          <div class="strip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="strip-text">
+            <span class="strip-label">Availability</span>
+            <span class="strip-value">Worldwide</span>
+          </div>
+        </div>
+        <div class="strip-item card card-hover">
+          <div class="strip-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="strip-text">
+            <span class="strip-label">Sales</span>
+            <span class="strip-value">sales@staffone.io</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Section -->
+  <section class="section">
+    <div class="container">
+      <div class="form-container reveal">
+        <ContactForm />
+      </div>
+    </div>
+  </section>
+
+  <!-- What Happens Next -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge badge-brand">What Happens Next</span>
+        <h2>From request to results in 3 steps</h2>
+        <p>Our team follows a structured process to make sure your evaluation experience is seamless.</p>
+      </div>
+      <div class="grid-3 reveal">
+        <div class="step-card card">
+          <div class="step-number">1</div>
+          <h3>We review your request</h3>
+          <p>Within 24 hours, a solutions consultant reviews your team size, industry, and use case to prepare a relevant walkthrough.</p>
+        </div>
+        <div class="step-card card">
+          <div class="step-number">2</div>
+          <h3>Personalized demo call</h3>
+          <p>A 30-minute live demo tailored to your workflows — attendance, payroll, onboarding, or the full platform.</p>
+        </div>
+        <div class="step-card card">
+          <div class="step-number">3</div>
+          <h3>Free trial access</h3>
+          <p>Get a 14-day trial with your own workspace pre-configured. Import your team and start tracking from day one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTABanner
+    title="Prefer to explore on your own?"
+    subtitle="Check out our features page for a deep dive into every StaffOne module, or view our transparent pricing."
+    primaryCTA={{ label: 'Explore Features', href: '/features' }}
+    secondaryCTA={{ label: 'View Pricing', href: '/pricing' }}
+  />
+
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: var(--space-20) 0 var(--space-8);
+    text-align: center;
+  }
+
+  .page-hero-content {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    margin: var(--space-4) 0;
+  }
+
+  .page-hero p {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ── Contact Info Strip ── */
+  .contact-strip-section {
+    padding: 0 0 var(--space-6);
+  }
+
+  .strip-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6) !important;
+  }
+
+  .strip-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    background: rgba(79, 70, 229, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-start);
+    flex-shrink: 0;
+  }
+
+  :global([data-theme="dark"]) .strip-icon {
+    background: rgba(79, 70, 229, 0.15);
+    color: #818cf8;
+  }
+
+  .strip-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .strip-label {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .strip-value {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  /* ── Form Container ── */
+  .form-container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* ── Steps ── */
+  .step-card {
+    text-align: center;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--brand-gradient);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: var(--text-sm);
+    margin: 0 auto var(--space-5);
+  }
+
+  .step-card h3 {
+    font-size: var(--text-base);
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+  }
+
+  .step-card p {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+</style>

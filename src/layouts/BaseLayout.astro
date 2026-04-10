@@ -1,0 +1,87 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonicalURL?: string;
+}
+
+const {
+  title,
+  description = 'StaffOne — Workforce management that keeps your teams accountable, your operations visible, and your HR processes centralized.',
+  canonicalURL
+} = Astro.props;
+
+const siteURL = 'https://staffone.io';
+const fullTitle = title === 'StaffOne' ? title : `${title} — StaffOne`;
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#4f46e5" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="StaffOne" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+
+  {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{fullTitle}</title>
+</head>
+<body>
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+
+  <script is:inline>
+    // Theme management
+    (function() {
+      const saved = localStorage.getItem('staffone-theme');
+      if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else if (saved === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+
+    // Scroll reveal
+    document.addEventListener('DOMContentLoaded', () => {
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      reveals.forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
+
+<style>
+  main {
+    min-height: calc(100vh - var(--header-height));
+  }
+</style>

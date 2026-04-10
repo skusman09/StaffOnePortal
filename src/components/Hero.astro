@@ -1,0 +1,391 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  primaryCTA?: { label: string; href: string };
+  secondaryCTA?: { label: string; href: string };
+}
+
+const { title, subtitle, primaryCTA, secondaryCTA } = Astro.props;
+---
+
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-gradient-orb hero-orb-1"></div>
+    <div class="hero-gradient-orb hero-orb-2"></div>
+    <div class="hero-grid-pattern"></div>
+  </div>
+
+  <div class="container hero-content">
+    <div class="hero-badge animate-fade-in-up">
+      <span class="badge badge-brand">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Workforce Management Platform
+      </span>
+    </div>
+
+    <h1 class="hero-title animate-fade-in-up delay-1" set:html={title} />
+
+    <p class="hero-subtitle animate-fade-in-up delay-2">{subtitle}</p>
+
+    <div class="hero-actions animate-fade-in-up delay-3">
+      {primaryCTA && (
+        <a href={primaryCTA.href} class="btn btn-primary btn-lg">{primaryCTA.label}</a>
+      )}
+      {secondaryCTA && (
+        <a href={secondaryCTA.href} class="btn btn-secondary btn-lg">{secondaryCTA.label}</a>
+      )}
+    </div>
+
+    <div class="hero-trust animate-fade-in-up delay-4">
+      <div class="trust-avatars">
+        <div class="trust-avatar" style="background:#818cf8;">A</div>
+        <div class="trust-avatar" style="background:#6366f1;">B</div>
+        <div class="trust-avatar" style="background:#4f46e5;">C</div>
+        <div class="trust-avatar" style="background:#3b82f6;">D</div>
+      </div>
+      <p class="trust-text">
+        Trusted by <strong>500+</strong> teams managing <strong>10,000+</strong> employees
+      </p>
+    </div>
+  </div>
+
+  <!-- Dashboard Preview -->
+  <div class="hero-preview animate-fade-in-up delay-5">
+    <div class="container">
+      <div class="preview-window">
+        <div class="preview-header">
+          <div class="preview-dots">
+            <span style="background:#ef4444;"></span>
+            <span style="background:#f59e0b;"></span>
+            <span style="background:#22c55e;"></span>
+          </div>
+          <div class="preview-address">app.staffone.io/dashboard</div>
+        </div>
+        <div class="preview-body">
+          <div class="preview-sidebar">
+            <div class="preview-sidebar-item active">
+              <div class="preview-dot-active"></div>
+              Dashboard
+            </div>
+            <div class="preview-sidebar-item">History</div>
+            <div class="preview-sidebar-item">Calendar</div>
+            <div class="preview-sidebar-item">Leave</div>
+            <div class="preview-sidebar-item">My Salary</div>
+            <div class="preview-sidebar-item">Reports</div>
+          </div>
+          <div class="preview-main">
+            <div class="preview-stats">
+              <div class="preview-stat">
+                <span class="preview-stat-label">Days Worked</span>
+                <span class="preview-stat-value">22</span>
+              </div>
+              <div class="preview-stat">
+                <span class="preview-stat-label">Hours This Month</span>
+                <span class="preview-stat-value">176.5h</span>
+              </div>
+              <div class="preview-stat">
+                <span class="preview-stat-label">Attendance</span>
+                <span class="preview-stat-value" style="color:var(--success);">96.4%</span>
+              </div>
+              <div class="preview-stat">
+                <span class="preview-stat-label">Overtime</span>
+                <span class="preview-stat-value" style="color:#f59e0b;">12.3h</span>
+              </div>
+            </div>
+            <div class="preview-chart">
+              <div class="preview-chart-title">Weekly Trend</div>
+              <div class="preview-bars">
+                <div class="preview-bar" style="height:60%;"></div>
+                <div class="preview-bar" style="height:85%;"></div>
+                <div class="preview-bar" style="height:70%;"></div>
+                <div class="preview-bar" style="height:95%;"></div>
+                <div class="preview-bar" style="height:80%;"></div>
+                <div class="preview-bar active" style="height:100%;"></div>
+                <div class="preview-bar" style="height:45%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: var(--space-20) 0 var(--space-8);
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .hero-gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.12;
+  }
+
+  .hero-orb-1 {
+    width: 600px;
+    height: 600px;
+    background: var(--brand-start);
+    top: -200px;
+    right: -100px;
+  }
+
+  .hero-orb-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--brand-end);
+    bottom: -100px;
+    left: -50px;
+  }
+
+  .hero-grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, var(--border-primary) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.4;
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-title {
+    font-size: clamp(2.25rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto var(--space-8);
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-10);
+  }
+
+  .hero-trust {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+
+  .trust-avatars {
+    display: flex;
+  }
+
+  .trust-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: -8px;
+    border: 2px solid var(--bg-primary);
+  }
+
+  .trust-avatar:first-child {
+    margin-left: 0;
+  }
+
+  .trust-text {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+  }
+
+  .trust-text strong {
+    color: var(--text-secondary);
+  }
+
+  /* Dashboard Preview */
+  .hero-preview {
+    position: relative;
+    margin-top: var(--space-12);
+    padding: 0 var(--space-6);
+  }
+
+  .preview-window {
+    background: var(--bg-card);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-2xl);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .preview-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .preview-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .preview-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .preview-address {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    font-family: var(--font-mono);
+  }
+
+  .preview-body {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    min-height: 300px;
+  }
+
+  .preview-sidebar {
+    border-right: 1px solid var(--border-primary);
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .preview-sidebar-item {
+    padding: var(--space-2) var(--space-3);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .preview-sidebar-item.active {
+    background: rgba(79, 70, 229, 0.1);
+    color: var(--brand-start);
+    font-weight: 600;
+  }
+
+  .preview-dot-active {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--brand-start);
+  }
+
+  .preview-main {
+    padding: var(--space-6);
+  }
+
+  .preview-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .preview-stat {
+    padding: var(--space-4);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-primary);
+  }
+
+  .preview-stat-label {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    font-weight: 600;
+    margin-bottom: var(--space-1);
+  }
+
+  .preview-stat-value {
+    font-size: 1.25rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+  }
+
+  .preview-chart {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-primary);
+    padding: var(--space-4);
+  }
+
+  .preview-chart-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .preview-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-3);
+    height: 80px;
+  }
+
+  .preview-bar {
+    flex: 1;
+    background: var(--border-primary);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    transition: all var(--transition-base);
+  }
+
+  .preview-bar.active {
+    background: var(--brand-gradient);
+  }
+
+  @media (max-width: 768px) {
+    .hero { padding: var(--space-12) 0 var(--space-4); }
+    .preview-body { grid-template-columns: 1fr; }
+    .preview-sidebar { display: none; }
+    .preview-stats { grid-template-columns: repeat(2, 1fr); }
+    .hero-trust { flex-direction: column; }
+  }
+</style>

@@ -1,0 +1,444 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+const modules = [
+  {
+    id: 'attendance',
+    title: 'Attendance & Shift Tracking',
+    description: 'Real-time GPS-verified attendance with multi-shift support, live duration tracking, and geofence boundaries. Employees check in with a single tap; managers see the full picture instantly.',
+    capabilities: [
+      'One-tap check-in and check-out with GPS coordinates',
+      'Support for regular, overtime, and break shift types',
+      'Live duration counter while shift is active',
+      'Monthly statistics with days worked, hours, and attendance percentage',
+      'Device information capture for audit compliance',
+      'Geofence validation for location-based attendance',
+    ],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+  },
+  {
+    id: 'leave',
+    title: 'Leave & Comp-off Management',
+    description: 'A complete leave lifecycle — from application to approval. Supports multiple leave types, comp-off workflows, balance tracking, and holiday calendar management.',
+    capabilities: [
+      'Submit leave requests with type, dates, and reason',
+      'Admin approval and rejection workflows',
+      'Real-time leave balance tracking per employee',
+      'Comp-off request and approval flow for extra workdays',
+      'Company-wide holiday calendar management',
+      'Leave breakdown analytics for HR dashboards',
+    ],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+  },
+  {
+    id: 'payroll',
+    title: 'Payroll Readiness',
+    description: 'Transforms raw attendance data into structured payroll inputs. Handles CTC breakdowns, deductions, allowances, and generates export-ready reports for any pay period.',
+    capabilities: [
+      'Automated salary computation from attendance and policies',
+      'CTC breakdown with basic, HRA, DA, and other components',
+      'Deduction handling for PF, ESI, PT, and TDS',
+      'Allowance management and reimbursement tracking',
+      'Monthly payroll run with bulk generation',
+      'CSV export for integration with external payroll systems',
+    ],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+  },
+  {
+    id: 'onboarding',
+    title: 'Employee Onboarding',
+    description: 'Structured, checklist-driven onboarding workflows that ensure every new hire completes the right tasks in the right order. Progress tracking with completion percentages.',
+    capabilities: [
+      'Create reusable onboarding workflow templates',
+      'Assign workflows to new hires automatically',
+      'Task-level progress tracking with completion status',
+      'Ordered task execution with dependency awareness',
+      'Real-time progress percentage display',
+      'Admin visibility into all active onboarding sessions',
+    ],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>',
+  },
+  {
+    id: 'analytics',
+    title: 'Analytics & Reporting',
+    description: 'Dashboards that give HR and operations leaders immediate visibility into workforce performance. Track trends, identify outliers, and export actionable reports.',
+    capabilities: [
+      'Team-wide attendance trend charts',
+      'Top performer rankings by hours and consistency',
+      'Individual employee deep-dive analytics',
+      'Daily, weekly, and monthly stat breakdowns',
+      'Leave breakdown by type and department',
+      'CSV export for all data views',
+    ],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+  },
+  {
+    id: 'departments',
+    title: 'Department & Location Control',
+    description: 'Organize your workforce by department and location. Each with configurable policies, manager assignments, and location-based attendance validation.',
+    capabilities: [
+      'Create and manage departments with descriptions',
+      'Location management with GPS coordinates',
+      'Geofence radius configuration per location',
+      'Filter attendance and reports by department',
+      'Role-based access scoped to organizational units',
+      'Multi-location support for distributed teams',
+    ],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>',
+  },
+  {
+    id: 'pulse',
+    title: 'Pulse Surveys',
+    description: 'Quick, targeted employee sentiment surveys that capture how your team is feeling. Admins get aggregated results; employees get a voice.',
+    capabilities: [
+      'Create lightweight pulse surveys with custom questions',
+      'Distribute to all employees or specific departments',
+      'Anonymous response collection',
+      'Real-time aggregated results for admins',
+      'Dashboard integration for sentiment tracking',
+      'Scheduled survey cadence support',
+    ],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+  },
+  {
+    id: 'audit',
+    title: 'Compliance & Audit Trails',
+    description: 'Every action in StaffOne is logged. Maintain a tamper-proof audit trail for attendance, leaves, payroll changes, and admin actions.',
+    capabilities: [
+      'Immutable audit log for all system events',
+      'Action-level tracking with user, timestamp, and details',
+      'Filterable audit views by action type and user',
+      'JWT-based authentication with access and refresh tokens',
+      'Role-based access control (admin, employee)',
+      'Rate limiting and request throttling for API security',
+    ],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+  },
+];
+
+const comparisonFeatures = [
+  { name: 'GPS-verified attendance', starter: true, pro: true, enterprise: true },
+  { name: 'Multi-shift support', starter: true, pro: true, enterprise: true },
+  { name: 'Leave management', starter: true, pro: true, enterprise: true },
+  { name: 'Holiday calendar', starter: true, pro: true, enterprise: true },
+  { name: 'Comp-off workflows', starter: false, pro: true, enterprise: true },
+  { name: 'Payroll generation', starter: false, pro: true, enterprise: true },
+  { name: 'Employee onboarding', starter: false, pro: true, enterprise: true },
+  { name: 'Analytics dashboard', starter: false, pro: true, enterprise: true },
+  { name: 'Pulse surveys', starter: false, pro: true, enterprise: true },
+  { name: 'Audit trails', starter: false, pro: true, enterprise: true },
+  { name: 'Multi-location', starter: false, pro: false, enterprise: true },
+  { name: 'SSO / SAML', starter: false, pro: false, enterprise: true },
+  { name: 'Priority support', starter: false, pro: false, enterprise: true },
+  { name: 'Custom integrations', starter: false, pro: false, enterprise: true },
+];
+---
+
+<BaseLayout title="Features" description="Explore StaffOne's full feature set — attendance tracking, leave management, payroll readiness, onboarding, analytics, and more.">
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-content reveal">
+        <span class="badge badge-brand">Platform Features</span>
+        <h1>Every module your <span class="gradient-text">workforce operations need</span></h1>
+        <p>StaffOne covers the full employee lifecycle — from onboarding to payroll. Each module is purpose-built, tightly integrated, and designed for operational clarity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Module Deep Dives -->
+  {modules.map((mod, i) => (
+    <section class:list={['section', { 'section-alt': i % 2 === 1 }]} id={mod.id}>
+      <div class="container">
+        <div class:list={['module-row', 'reveal', { 'module-reverse': i % 2 === 1 }]}>
+          <div class="module-content">
+            <div class="module-icon-wrap">
+              <Fragment set:html={mod.icon} />
+            </div>
+            <h2>{mod.title}</h2>
+            <p class="module-desc">{mod.description}</p>
+            <ul class="module-capabilities">
+              {mod.capabilities.map(cap => (
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  {cap}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="module-visual">
+            <div class="module-mock card card-hover">
+              <div class="mock-header">
+                <div class="mock-dot" style="background:#ef4444;"></div>
+                <div class="mock-dot" style="background:#f59e0b;"></div>
+                <div class="mock-dot" style="background:#22c55e;"></div>
+              </div>
+              <div class="mock-body">
+                <div class="mock-line" style="width:70%;"></div>
+                <div class="mock-line" style="width:50%;"></div>
+                <div class="mock-bar-group">
+                  <div class="mock-bar" style="height:40%;"></div>
+                  <div class="mock-bar" style="height:70%;"></div>
+                  <div class="mock-bar active" style="height:90%;"></div>
+                  <div class="mock-bar" style="height:60%;"></div>
+                  <div class="mock-bar" style="height:80%;"></div>
+                </div>
+                <div class="mock-line" style="width:85%;"></div>
+                <div class="mock-line" style="width:60%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Comparison Matrix -->
+  <section class="section section-alt" id="comparison">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge badge-brand">Feature Comparison</span>
+        <h2>Compare plans at a glance</h2>
+        <p>See which features are included in each plan to find the right fit for your team.</p>
+      </div>
+      <div class="comparison-table-wrap card card-hover reveal" style="padding: 0;">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Starter</th>
+              <th class="highlight-col">Professional</th>
+              <th>Enterprise</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparisonFeatures.map(f => (
+              <tr>
+                <td>{f.name}</td>
+                <td>{f.starter ? '✓' : '—'}</td>
+                <td class="highlight-col">{f.pro ? '✓' : '—'}</td>
+                <td>{f.enterprise ? '✓' : '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTABanner
+    title="See StaffOne in action"
+    subtitle="Book a personalized demo and discover how these features map to your operational needs."
+    primaryCTA={{ label: 'Request a Demo', href: '/contact' }}
+    secondaryCTA={{ label: 'View Pricing', href: '/pricing' }}
+  />
+
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: var(--space-20) 0 var(--space-12);
+    text-align: center;
+  }
+
+  .page-hero-content {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: var(--space-4) 0;
+  }
+
+  .page-hero p {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* Module rows */
+  .module-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .module-reverse {
+    direction: rtl;
+  }
+
+  .module-reverse > * {
+    direction: ltr;
+  }
+
+  .module-icon-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-xl);
+    background: rgba(79, 70, 229, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-start);
+    margin-bottom: var(--space-5);
+  }
+
+  :global([data-theme="dark"]) .module-icon-wrap {
+    background: rgba(79, 70, 229, 0.15);
+    color: #818cf8;
+  }
+
+  .module-icon-wrap :global(svg) {
+    width: 28px;
+    height: 28px;
+  }
+
+  .module-content h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-4);
+  }
+
+  .module-desc {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-6);
+  }
+
+  .module-capabilities {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .module-capabilities li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
+
+  .module-capabilities svg {
+    flex-shrink: 0;
+  }
+
+  /* Module visual mock */
+  .module-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .module-mock {
+    width: 100%;
+    max-width: 400px;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .mock-header {
+    display: flex;
+    gap: 6px;
+    padding: var(--space-3) var(--space-4);
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .mock-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .mock-body {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .mock-line {
+    height: 8px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-full);
+  }
+
+  .mock-bar-group {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-2);
+    height: 80px;
+  }
+
+  .mock-bar {
+    flex: 1;
+    background: var(--border-primary);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  }
+
+  .mock-bar.active {
+    background: var(--brand-gradient);
+  }
+
+  /* Comparison table */
+  .comparison-table-wrap {
+    overflow-x: auto;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-primary);
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+
+  .comparison-table th, .comparison-table td {
+    padding: var(--space-4) var(--space-6);
+    text-align: center;
+    border-bottom: 1px solid var(--border-primary);
+  }
+
+  .comparison-table th {
+    background: var(--bg-secondary);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: var(--text-xs);
+    letter-spacing: 0.05em;
+  }
+
+  .comparison-table th:first-child, .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+  }
+
+  .highlight-col {
+    background: rgba(79, 70, 229, 0.04);
+  }
+
+  :global([data-theme="dark"]) .highlight-col {
+    background: rgba(79, 70, 229, 0.08);
+  }
+
+  .comparison-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  @media (max-width: 768px) {
+    .module-row {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+    .module-reverse {
+      direction: ltr;
+    }
+    .module-visual {
+      order: -1;
+    }
+  }
+</style>

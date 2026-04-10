@@ -1,0 +1,71 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  highlight?: boolean;
+}
+
+const { icon, title, description, highlight = false } = Astro.props;
+---
+
+<div class:list={['feature-card', 'card', 'card-hover', { 'feature-highlight': highlight }]}>
+  <div class="feature-icon">
+    <Fragment set:html={icon} />
+  </div>
+  <h3 class="feature-title">{title}</h3>
+  <p class="feature-desc">{description}</p>
+</div>
+
+<style>
+  .feature-card {
+    position: relative;
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .feature-highlight {
+    border-color: rgba(79, 70, 229, 0.2);
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.03), rgba(59, 130, 246, 0.03));
+  }
+
+  :global([data-theme="dark"]) .feature-highlight {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(59, 130, 246, 0.05));
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-xl);
+    background: rgba(79, 70, 229, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-start);
+    margin-bottom: var(--space-5);
+  }
+
+  :global([data-theme="dark"]) .feature-icon {
+    background: rgba(79, 70, 229, 0.15);
+    color: #818cf8;
+  }
+
+  .feature-icon :global(svg) {
+    width: 24px;
+    height: 24px;
+  }
+
+  .feature-title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+    color: var(--text-primary);
+  }
+
+  .feature-desc {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+</style>
