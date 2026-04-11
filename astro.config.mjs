@@ -3,13 +3,14 @@ import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   site: 'https://staffone.io',
-  output: 'hybrid',
-  adapter: cloudflare(),
-  image: {
-    service: {
-      entrypoint: 'astro/assets/services/cloudflare'
+  output: 'static',
+  adapter: cloudflare({
+    prerenderEnvironment: 'node',
+    imageService: 'cloudflare',
+    platformProxy: {
+      enabled: true
     }
-  },
+  }),
   vite: {
     css: {
       preprocessorOptions: {}

@@ -12,7 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.3.0",
+    "@astrojs/cloudflare": "^13.0.0",
     "astro": "^6.1.5",
     "lucide-static": "^0.460.0"
   }
