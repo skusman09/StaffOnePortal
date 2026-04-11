@@ -1,47 +1,89 @@
-# StaffOnePortal
-Marketing website for StaffOne, showcasing HR and workforce management features, pricing, and demo flows.
+# 🚀 StaffOne Portal
 
+**StaffOne Portal** is a high-performance marketing website and workforce management gateway built with **Astro 6**. It features a modern, responsive design optimized for zero-cold-start delivery on **Cloudflare Pages**.
 
-# Astro Starter Kit: Minimal
+---
 
-```sh
-npm create astro@latest -- --template minimal
-```
+## ✨ Features
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- **⚡ Blazing Fast**: Built with Astro 6 for optimal performance and minimal JavaScript.
+- **📱 Fully Responsive**: A premium glassmorphic UI that looks stunning on every device.
+- **☁️ Cloudflare Optimized**: Native integration with Cloudflare Workers and Pages for global delivery.
+- **🏗️ Component-Based**: Modular architecture with reusable Astro components.
+- **SEO & Performance**: Optimized meta tags, semantic HTML, and high Core Web Vitals.
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🛠️ Technology Stack
+
+- **Framework**: [Astro 6](https://astro.build/)
+- **Styling**: Vanilla CSS (Custom Design System)
+- **Icons**: [Lucide Icons](https://lucide.dev/)
+- **Deployment**: [Cloudflare Pages](https://pages.cloudflare.com/)
+
+---
+
+## 📂 Project Structure
 
 ```text
 /
-├── public/
+├── public/          # Static assets (images, icons, robots.txt)
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/  # Reusable UI components (Hero, Features, Pricing, etc.)
+│   ├── layouts/     # Page layouts (BaseLayout)
+│   ├── pages/       # Project routes (Home, About, Contact, etc.)
+│   └── styles/      # Global CSS and variables
+├── wrangler.json    # Cloudflare configuration
+└── package.json     # Project dependencies and scripts
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## ⌨️ Local Development
 
-Any static assets, like images, can be placed in the `public/` directory.
+### Prerequisites
+- Node.js (v18.14.1 or higher)
+- npm
+
+### Setup
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+---
 
 ## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
+All commands are run from the root of the project:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| Command | Action |
+| :--- | :--- |
+| `npm install` | Installs dependencies |
+| `npm run dev` | Starts local dev server at `localhost:4321` |
+| `npm run build` | Builds your production site to `./dist/client` |
+| `npm run preview` | Preview your build locally |
+| `npm run astro ...` | Run CLI commands like `astro add`, `astro check` |
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 🚀 Deployment
+
+This project is deployed on **Cloudflare Pages**.
+
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist/client`
+- **Compatibility Date**: `2026-04-10`
+
+The project includes a `postbuild` script for automatic cleanup of internal configuration files to ensure smooth deployment.
+
+---
+
+## 👨‍💻 Author
+
+**SHAIKH MOHAMMED USMAN**
