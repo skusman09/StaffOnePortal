@@ -11,6 +11,9 @@ export default defineConfig({
       enabled: true
     }
   }),
+  session: {
+    driver: 'cookie'
+  },
   vite: {
     css: {
       preprocessorOptions: {}

@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "postbuild": "node -e \"const fs = require('fs'); ['dist/server/wrangler.json', '.wrangler'].forEach(p => { if (fs.existsSync(p)) fs.rmSync(p, {recursive: true, force: true}) })\"",
     "preview": "astro preview",
     "astro": "astro"
   },
