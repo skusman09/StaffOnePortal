@@ -1,0 +1,4 @@
+# No catch-all redirect — Astro hybrid SSR handles routing via the Cloudflare Worker.
+# Add specific redirects below as needed.
+
+# /old-path /new-path 301
